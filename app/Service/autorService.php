@@ -1,5 +1,5 @@
 <?php
-namespace App\Services;
+namespace App\Service;
 use App\Repository\autorRepository;
 
 class autorService{
@@ -22,6 +22,13 @@ class autorService{
     public function store(array $data){
         return $this->autorRepository->store($data);
     }
-    
+
+    public function update(int $id, array $data){
+        return $this->autorRepository->update($id,$data);
+    }
+
+    public function delete(int $id){
+        return $this->autorRepository->delete($id);
+    }
 
 }
