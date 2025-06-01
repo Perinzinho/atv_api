@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('autor', function (Blueprint $table) {
             $table->id();
             $table->string('nome',45);
-            $table->date('data_nasc');
+            $table->string('data_nasc',10);
             $table->string('biografia',90);
             $table->timestamps();
         });

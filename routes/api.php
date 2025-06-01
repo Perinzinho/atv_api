@@ -8,5 +8,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
-Route::get('/autor',[AutorController::class, 'get']);
+Route::controller(AutorController::class)->group(function(){
+    Route::get('/autor', 'get');
+    Route::post('/new_autor', 'store');
+});
