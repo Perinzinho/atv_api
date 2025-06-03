@@ -23,7 +23,7 @@ class AutorController extends Controller
         try{
             $autor= $this->autorService->details($id);
         }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Category not found'],404);
+            return response()->json(['error'=>'Autor não encontrado'],404);
         }
         return new autorResource($autor);
     }
