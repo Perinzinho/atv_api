@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Service\generoService;
 use App\Http\Resources\generoResource;
-use App\Http\Requests\autorStoreRequest;
-use App\Http\Requests\autorUpdateRequest;
+use App\Http\Requests\generoStoreRequest;
+use App\Http\Requests\generoUpdateRequest;
 
 class GeneroController extends Controller
 {
@@ -28,13 +28,13 @@ class GeneroController extends Controller
         return new generoResource($genero);
     }
 
-    public function store(autorStoreRequest $request){
+    public function store(generoStoreRequest $request){
         $data=$request->validated();
         $genero=$this->generoService->store($data);
         return new generoResource($genero);
     }
 
-    public function update(autorUpdateRequest $request, int $id){
+    public function update(generoUpdateRequest $request, int $id){
         $data=$request->validated();
         try{
             $genero=$this->generoService->update($id,$data);
