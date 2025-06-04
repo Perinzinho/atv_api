@@ -31,4 +31,10 @@ class autorService{
         return $this->autorRepository->delete($id);
     }
 
+    public function getWithLivros(int $id){
+        return $this->autorRepository->getWithLivros();
+    }
+
+
+
 }

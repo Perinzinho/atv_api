@@ -18,6 +18,7 @@ Route::controller(AutorController::class)->group(function(){
     Route::post('/new_autor', 'store');
     Route::patch('/autor/{id}', 'update');
     Route::delete('/delete_autor/{id}','delete');
+    Route::get('/autor/livros/{id}','getWithLivro');
 });
 
 Route::controller(GeneroController::class)->group(function(){
@@ -50,4 +51,5 @@ Route::controller(UsuarioController::class)->group(function(){
     Route::post('/new_usuario', 'store');
     Route::patch('/usuario/{id}', 'update');
     Route::delete('/delete_usuario/{id}','delete');
+
 });

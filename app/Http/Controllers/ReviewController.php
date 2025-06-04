@@ -6,6 +6,7 @@ use App\Service\reviewService;
 use App\Http\Resources\reviewResource;
 use App\Http\Requests\reviewStoreRequest;
 use App\Http\Requests\reviewUpdateRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ReviewController extends Controller
 {

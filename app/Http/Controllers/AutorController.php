@@ -6,6 +6,7 @@ use App\Service\autorService;
 use App\Http\Resources\autorResource;
 use App\Http\Requests\autorStoreRequest;
 use App\Http\Requests\autorUpdateRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AutorController extends Controller
 {
@@ -51,6 +52,11 @@ class AutorController extends Controller
             return response()->json(['error'=>'Autor não encontrado'],404);
         }
         return new autorResource($autor);
+    }
+
+    public function getWithLivro(int $id){
+        $autor=$this->autorService->getWithLivro();
+        return livroResource::collection($autor);
     }
 
     

@@ -10,6 +10,6 @@ class autor extends Model
     protected $fillable=['nome','data_nasc','biografia'];
 
     public function livro(){
-        return $this->hasMany(livro::class);
+        return $this->hasMany(livro::class,'livro_id','id');
     }
 }

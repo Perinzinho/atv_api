@@ -6,6 +6,7 @@ use App\Service\livroService;
 use App\Http\Resources\livroResource;
 use App\Http\Requests\livroStoreRequest;
 use App\Http\Requests\livroUpdateRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class LivroController extends Controller
 {

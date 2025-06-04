@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\livroResource;
 
 class autorResource extends JsonResource
 {
@@ -18,7 +19,8 @@ class autorResource extends JsonResource
             'id'=>$this->id,
             'nome'=>$this->nome,
             'data_nasc'=>$this->data_nasc,
-            'biografia'=>$this->biografia        
+            'biografia'=>$this->biografia,      
+            'livro'=>livroResource::collection($this->whenLoaded('livro'))  
         ];
     }
 }

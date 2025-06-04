@@ -22,7 +22,7 @@ class reviewStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "nota"=>"required|float|max:5",
+            "nota"=>"required|numeric|max:5",
             "texto"=>"required|string|max:500"
         ];
     }

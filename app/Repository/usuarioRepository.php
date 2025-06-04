@@ -27,5 +27,7 @@ class usuarioRepository{
         $usuario->delete();
         return $usuario;
     }
+
+
     
 }

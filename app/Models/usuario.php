@@ -10,6 +10,6 @@ class usuario extends Model
     protected $fillable = ['nome','email','senha'];
 
     public function review(){
-        return $this->hasMany(review::class);
+        return $this->hasMany(review::class,'review_id','id');
     }
 }

@@ -6,6 +6,7 @@ use App\Service\usuarioService;
 use App\Http\Resources\usuarioResource;
 use App\Http\Requests\usuarioStoreRequest;
 use App\Http\Requests\usuarioUpdateRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class usuarioController extends Controller
 {
@@ -19,7 +20,7 @@ class usuarioController extends Controller
         return usuarioResource::collection($genero);
     }
 
-    public function details($id){
+    public function details(int $id){
         try{
             $genero= $this->usuarioService->details($id);
         }catch(ModelNotFoundException $e){
@@ -52,6 +53,8 @@ class usuarioController extends Controller
         }
         return new usuarioResource($genero);
     }
+
+
 
     
 

@@ -6,6 +6,7 @@ use App\Service\generoService;
 use App\Http\Resources\generoResource;
 use App\Http\Requests\generoStoreRequest;
 use App\Http\Requests\generoUpdateRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException; 
 
 class GeneroController extends Controller
 {
