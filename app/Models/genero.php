@@ -10,6 +10,6 @@ class genero extends Model
     protected $fillable = ['nome'];
 
     public function livro(){
-    return $this->hasMany(livro::class, 'genero_id');
+    return $this->hasMany(livro::class, 'livro_id');
     }
 }

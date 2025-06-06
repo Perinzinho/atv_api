@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\review;
 use App\Service\reviewService;
 use App\Http\Resources\reviewResource;
 use App\Http\Requests\reviewStoreRequest;
@@ -16,42 +17,42 @@ class ReviewController extends Controller
     }
 
     public function get(){
-        $genero=$this->reviewService->get();
-        return reviewResource::collection($genero);
+        $review=$this->reviewService->get();
+        return reviewResource::collection($review);
     }
 
     public function details($id){
         try{
-            $genero= $this->reviewService->details($id);
+            $review= $this->reviewService->details($id);
         }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Genero não encontrado'],404);
+            return response()->json(['error'=>'Review não encontrado'],404);
         }
-        return new reviewResource($genero);
+        return new reviewResource($review);
     }
 
     public function store(reviewStoreRequest $request){
         $data=$request->validated();
-        $genero=$this->reviewService->store($data);
-        return new reviewResource($genero);
+        $review=$this->reviewService->store($data);
+        return new reviewResource($review);
     }
 
     public function update(reviewUpdateRequest $request, int $id){
         $data=$request->validated();
         try{
-            $genero=$this->reviewService->update($id,$data);
+            $review=$this->reviewService->update($id,$data);
         }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>"Genero não encontrado"],404);
+            return response()->json(['error'=>"Review não encontrado"],404);
         }
-        return new reviewResource($genero);
+        return new reviewResource($review);
     }
 
     public function delete(int $id){
         try{
-            $genero=$this->reviewService->delete($id);
+            $review=$this->reviewService->delete($id);
         }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Genero não encontrado'],404);
+            return response()->json(['error'=>'Review não encontrado'],404);
         }
-        return new reviewResource($genero);
+        return new reviewResource($review);
     }
 
     

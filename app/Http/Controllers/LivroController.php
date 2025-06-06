@@ -17,42 +17,42 @@ class LivroController extends Controller
     }
 
     public function get(){
-        $genero=$this->livroService->get();
-        return livroResource::collection($genero);
+        $livro=$this->livroService->get();
+        return livroResource::collection($livro);
     }
 
     public function details($id){
         try{
-            $genero= $this->livroService->details($id);
+            $livro= $this->livroService->details($id);
         }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Genero não encontrado'],404);
+            return response()->json(['error'=>'Livro não encontrado'],404);
         }
-        return new livroResource($genero);
+        return new livroResource($livro);
     }
 
     public function store(livroStoreRequest $request){
         $data=$request->validated();
-        $genero=$this->livroService->store($data);
-        return new livroResource($genero);
+        $livro=$this->livroService->store($data);
+        return new livroResource($livro);
     }
 
     public function update(livroUpdateRequest $request, int $id){
         $data=$request->validated();
         try{
-            $genero=$this->livroService->update($id,$data);
+            $livro=$this->livroService->update($id,$data);
         }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>"Genero não encontrado"],404);
+            return response()->json(['error'=>"Livro não encontrado"],404);
         }
-        return new livroResource($genero);
+        return new livroResource($livro);
     }
 
     public function delete(int $id){
         try{
-            $genero=$this->livroService->delete($id);
+            $livro=$this->livroService->delete($id);
         }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Genero não encontrado'],404);
+            return response()->json(['error'=>'Livro não encontrado'],404);
         }
-        return new livroResource($genero);
+        return new livroResource($livro);
     }
 
     public function listarReviews($id){
@@ -66,7 +66,7 @@ class LivroController extends Controller
 }
 
     public function GetWithReviews(){
-    $livro = livro::with(['review', 'autor', 'genero'])->get();
+    $livro = livro::with(['review', 'autor', 'livro$livro'])->get();
 
     return response()->json($livro);
 }

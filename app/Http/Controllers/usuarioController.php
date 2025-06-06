@@ -17,42 +17,42 @@ class usuarioController extends Controller
     }
 
     public function get(){
-        $genero=$this->usuarioService->get();
-        return usuarioResource::collection($genero);
+        $usuario=$this->usuarioService->get();
+        return usuarioResource::collection($usuario);
     }
 
     public function details(int $id){
         try{
-            $genero= $this->usuarioService->details($id);
+            $usuario= $this->usuarioService->details($id);
         }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Genero não encontrado'],404);
+            return response()->json(['error'=>'usuario não encontrado'],404);
         }
-        return new usuarioResource($genero);
+        return new usuarioResource($usuario);
     }
 
     public function store(usuarioStoreRequest $request){
         $data=$request->validated();
-        $genero=$this->usuarioService->store($data);
-        return new usuarioResource($genero);
+        $usuario=$this->usuarioService->store($data);
+        return new usuarioResource($usuario);
     }
 
     public function update(usuarioUpdateRequest $request, int $id){
         $data=$request->validated();
         try{
-            $genero=$this->usuarioService->update($id,$data);
+            $usuario=$this->usuarioService->update($id,$data);
         }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>"Genero não encontrado"],404);
+            return response()->json(['error'=>"usuario não encontrado"],404);
         }
-        return new usuarioResource($genero);
+        return new usuarioResource($usuario);
     }
 
     public function delete(int $id){
         try{
-            $genero=$this->usuarioService->delete($id);
+            $usuario=$this->usuarioService->delete($id);
         }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Genero não encontrado'],404);
+            return response()->json(['error'=>'usuario não encontrado'],404);
         }
-        return new usuarioResource($genero);
+        return new usuarioResource($usuario);
     }
 
     public function listarReviews(int $id){

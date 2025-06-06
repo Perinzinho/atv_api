@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\models\autor;
+use App\Models\autor;
 use App\Service\autorService;
 use App\Http\Resources\autorResource;
 use App\Http\Requests\autorStoreRequest;
@@ -49,7 +49,7 @@ class AutorController extends Controller
 
     public function delete(int $id){
         try{
-            $autor=$this->autorService->delete($id);
+            $autor=$this->autorService->details($id);
         }catch(ModelNotFoundException $e){
             return response()->json(['error'=>'Autor não encontrado'],404);
         }

@@ -47,13 +47,24 @@ class GeneroController extends Controller
     }
 
     public function delete(int $id){
-        try{
-            $genero=$this->generoService->delete($id);
-        }catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Genero não encontrado'],404);
+       try {
+        
+        $genero = genero::with('livro')->findOrFail($id);
+
+        
+        foreach ($genero->livro as $livro) {
+            $livro->genre_id = null;
+            $livro->save();
         }
-        return new generoResource($genero);
+
+        $genero->delete();
+
+    } catch (ModelNotFoundException $e) {
+        return response()->json(['error' => 'Gênero não encontrado'], 404);
     }
+
+    return response()->json(['success' => 'Gênero deletado e livros desvinculados'], 200);
+}
 
     public function listarLivros(int $id){
         $genero = genero::with('livro')->find($id);

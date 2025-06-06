@@ -28,9 +28,17 @@ class autorService{
     }
 
     public function delete(int $id){
-        return $this->autorRepository->delete($id);
+    $autor = autor::with('livro.review')->findOrFail($id);
+
+    foreach ($autor->livros as $livro) {
+        $livro->reviews()->delete();
+        $livro->delete();
     }
 
+    $autor->delete();
+
+    return $autor;
+}
     public function findLivros(int $id){
         return $this->autorRepository->findLivros($id);
     }
