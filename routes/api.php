@@ -17,7 +17,7 @@ Route::controller(AutorController::class)->group(function(){
     Route::get('/autor/{id}','details');//
     Route::post('/new_autor', 'store');//
     Route::patch('/autor/{id}', 'update');//
-    Route::delete('/delete_autor/{id}','delete');
+    Route::delete('/delete_autor/{id}','delete');//
     Route::get('/autor/livros/{id}','findLivros');//
     Route::get('/autor/livros', "GetWithLivros");//não funciona
 });
@@ -27,7 +27,7 @@ Route::controller(GeneroController::class)->group(function(){
     Route::get('/genero/{id}','details');//
     Route::post('/new_genero', 'store');//
     Route::patch('/genero/{id}', 'update');//
-    Route::delete('/delete_genero/{id}','delete');
+    Route::delete('/delete_genero/{id}','delete');//?
     Route::get('/generos/livros/{id}', "listarLivros");//
     Route::get('/generos/livros', "GetWithLivros");//
     //Falta o delete daqui
@@ -37,8 +37,8 @@ Route::controller(LivroController::class)->group(function(){
     Route::get('/livro', 'get');//
     Route::get('/livro/{id}','details');//
     Route::post('/new_livro', 'store');//
-    Route::patch('/livro/{id}', 'update');//Não está funcionando por algum motivo
-    Route::delete('/delete_livro/{id}','delete');
+    Route::patch('/livro/{id}', 'update');//
+    Route::delete('/delete_livro/{id}','delete');//?
     Route::get('/livros/reviews/{id}', "listarReviews");//
     Route::get('/livros/reviews','GetWithReviews');//
 });
@@ -47,8 +47,8 @@ Route::controller(ReviewController::class)->group(function(){
     Route::get('/review', 'get');//
     Route::get('/review/{id}','details');//
     Route::post('/new_review', 'store');//
-    Route::patch('/review/{id}', 'update');//?
-    Route::delete('/delete_review/{id}','delete');
+    Route::patch('/review/{id}', 'update');//
+    Route::delete('/delete_review/{id}','delete');//
 });
 
 Route::controller(UsuarioController::class)->group(function(){
@@ -56,7 +56,7 @@ Route::controller(UsuarioController::class)->group(function(){
     Route::get('/usuario/{id}','details');//
     Route::post('/new_usuario', 'store');//
     Route::patch('/usuario/{id}', 'update');//
-    Route::delete('/delete_usuario/{id}','delete');
+    Route::delete('/delete_usuario/{id}','delete');//?
     Route::get('/usuario/reviews/{id}','listarReviews');//
 
 });
