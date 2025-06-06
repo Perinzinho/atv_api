@@ -20,7 +20,7 @@ class autorResource extends JsonResource
             'nome'=>$this->nome,
             'data_nasc'=>$this->data_nasc,
             'biografia'=>$this->biografia,      
-            'livro'=>livroResource::collection($this->whenLoaded('livro'))  
+            'livros'=>livroResource::collection($this->whenLoaded('livros'))  
         ];
     }
 }

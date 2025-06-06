@@ -28,9 +28,10 @@ class autorRepository{
         return $autor;
     }
 
-    public function getWithLivros(int $id){
-        $autor=autor::with('livro')->get();
-        return $autor;
+    public function findLivros(int $id){
+        $autor=$this->details($id);
+        $livros=$autor->livros;
+        return $livros;
     }
     
 }

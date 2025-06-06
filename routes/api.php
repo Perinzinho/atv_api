@@ -18,7 +18,8 @@ Route::controller(AutorController::class)->group(function(){
     Route::post('/new_autor', 'store');
     Route::patch('/autor/{id}', 'update');
     Route::delete('/delete_autor/{id}','delete');
-    Route::get('/autor/livros/{id}','getWithLivro');
+    Route::get('/autor/livros/{id}','findLivros');
+    Route::get('/autor/livros', "GetWithLivros");
 });
 
 Route::controller(GeneroController::class)->group(function(){
@@ -27,6 +28,8 @@ Route::controller(GeneroController::class)->group(function(){
     Route::post('/new_genero', 'store');
     Route::patch('/genero/{id}', 'update');
     Route::delete('/delete_genero/{id}','delete');
+    Route::get('/generos/livros/{id}', "listarLivros");
+    Route::get('/generos/livros', "GetWithLivros");
 });
 
 Route::controller(LivroController::class)->group(function(){
@@ -35,6 +38,8 @@ Route::controller(LivroController::class)->group(function(){
     Route::post('/new_livro', 'store');
     Route::patch('/livro/{id}', 'update');
     Route::delete('/delete_livro/{id}','delete');
+    Route::get('/livros/reviews/{id}', "listarReviews");
+    Route::get('/livros/reviews','GetWithReviews');
 });
 
 Route::controller(ReviewController::class)->group(function(){

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class genero extends Model
 {
     protected $table = 'genero';
-    protected $fillable = ['nome',"livro_id"];
+    protected $fillable = ['nome'];
 
     public function livro(){
-    return $this->belongsTo(livro::class,'livro_id','id');
+    return $this->hasMany(livro::class, 'genero_id');
     }
 }

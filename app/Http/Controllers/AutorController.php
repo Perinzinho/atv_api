@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\models\autor;
 use App\Service\autorService;
 use App\Http\Resources\autorResource;
 use App\Http\Requests\autorStoreRequest;
 use App\Http\Requests\autorUpdateRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Http\Resources\livroResource;
 
 class AutorController extends Controller
 {
@@ -22,7 +24,7 @@ class AutorController extends Controller
 
     public function details($id){
         try{
-            $autor= $this->autorService->details($id);
+            $autor= $this->autorService->details((int)$id);
         }catch(ModelNotFoundException $e){
             return response()->json(['error'=>'Autor não encontrado'],404);
         }
@@ -54,10 +56,20 @@ class AutorController extends Controller
         return new autorResource($autor);
     }
 
-    public function getWithLivro(int $id){
-        $autor=$this->autorService->getWithLivro();
-        return livroResource::collection($autor);
+    public function findLivros(int $id){
+        $autor= autor::with('livro')->find($id);
+        if (!$autor){
+            return response()->json(["error"=>"Autor não encontrado"],404);
+        }
+        return response()->json($autor->livro);
     }
+
+    public function GetWithLivros(){
+        $autor=autor::with('livro')->get();
+        return response()->json($autor);
+    }
+
+
 
     
 

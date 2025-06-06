@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\livro;
 use App\Service\livroService;
 use App\Http\Resources\livroResource;
 use App\Http\Requests\livroStoreRequest;
@@ -53,6 +54,22 @@ class LivroController extends Controller
         }
         return new livroResource($genero);
     }
+
+    public function listarReviews($id){
+    $livro = livro::with('review')->find($id);
+
+    if (!$livro) {
+        return response()->json(['error' => 'Livro não encontrado'], 404);
+    }
+
+    return response()->json($livro->review);
+}
+
+    public function GetWithReviews(){
+    $livro = livro::with(['review', 'autor', 'genero'])->get();
+
+    return response()->json($livro);
+}
 
     
 

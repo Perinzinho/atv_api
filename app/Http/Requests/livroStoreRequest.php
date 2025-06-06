@@ -23,7 +23,9 @@ class livroStoreRequest extends FormRequest
     {
         return [
             "titulo"=>"required|string|max:255",
-            "sinopse"=>"required|string|max:650"
+            "sinopse"=>"required|string|max:650",
+            "autor_id"=>"required|exists:autor,id",
+            "genero_id"=>"required|exists:genero,id"
         ];
     }
 }

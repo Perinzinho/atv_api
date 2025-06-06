@@ -23,7 +23,9 @@ class reviewStoreRequest extends FormRequest
     {
         return [
             "nota"=>"required|numeric|max:5",
-            "texto"=>"required|string|max:500"
+            "texto"=>"required|string|max:500",
+            "livro_id"=>"required|exists:livro,id",
+            "usuario_id"=>"required|exists:usuario,id"
         ];
     }
 }

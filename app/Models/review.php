@@ -10,9 +10,9 @@ class review extends Model
     protected $fillable = ['nota','texto','livro_id','usuario_id'];
 
     public function usuario(){
-        return $this->belongsTo(usuario::class,'usuario_id','id');
+        return $this->belongsTo(usuario::class,'usuario_id');
     }
     public function livro(){
-        return $this->belongsTo(livro::class,'livro_id','id');
+        return $this->belongsTo(livro::class,'livro_id');
     }
 }

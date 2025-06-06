@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\genero;
 use App\Service\generoService;
 use App\Http\Resources\generoResource;
 use App\Http\Requests\generoStoreRequest;
@@ -52,6 +53,19 @@ class GeneroController extends Controller
             return response()->json(['error'=>'Genero não encontrado'],404);
         }
         return new generoResource($genero);
+    }
+
+    public function listarLivros(int $id){
+        $genero = genero::with('livro')->find($id);
+        if (!$genero) {
+            return response()->json(['error' => 'Gênero não encontrado'], 404);
+        }
+        return response()->json($genero->livro);
+    }
+    
+    public function GetWithLivros(){
+        $generos = Genero::with('livro')->get();
+        return response()->json($generos);
     }
 
     
