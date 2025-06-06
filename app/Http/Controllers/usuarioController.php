@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\usuario;
 use App\Service\usuarioService;
 use App\Http\Resources\usuarioResource;
 use App\Http\Requests\usuarioStoreRequest;
@@ -54,7 +55,15 @@ class usuarioController extends Controller
         return new usuarioResource($genero);
     }
 
+    public function listarReviews(int $id){
+    
+        $usuario = usuario::with('review')->find($id);
+        if (!$usuario) {
+            return response()->json(['error' => 'Usuário não encontrado'], 404);
+        }
 
+        return response()->json($usuario->review);
+    }
 
     
 

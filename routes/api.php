@@ -56,5 +56,6 @@ Route::controller(UsuarioController::class)->group(function(){
     Route::post('/new_usuario', 'store');
     Route::patch('/usuario/{id}', 'update');
     Route::delete('/delete_usuario/{id}','delete');
+    Route::get('/usuario/reviews/{id}','listarReviews');
 
 });
